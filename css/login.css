@@ -1,0 +1,52 @@
+.title{
+    text-align: center;
+    margin: 30px 0px;
+}
+#login-body{
+    background-color: #F8F9FA;
+}
+  
+.form-signin{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.form-floating{
+    margin-bottom: 25px;
+}
+
+#submit-button{
+    width: 100px;
+
+}
+#formulario{
+    text-align: center;
+}
+
+.svg{
+    display: none;
+}   
+#none{
+    display: block;
+}
+
+.passw,
+.ema{
+    display: flex;
+}
+
+
+#bttn{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap
+}
+#google-button{
+    padding: 10px;
+    margin: 10px;
+    border-radius: 100%;
+}
