@@ -17,6 +17,8 @@ document.addEventListener("DOMContentLoaded", function() {
 
         //Validamos las condiciones del login
         if(email.value.length > 0 && password.value.length > 0){
+            localStorage.removeItem("img")
+            localStorage.setItem('user', email.value);
             window.location.href = "home.html";
         }else{  
             if(email.value.length > 0 && password.value.length <= 0){

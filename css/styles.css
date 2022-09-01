@@ -188,3 +188,9 @@ a.custom-card:hover {
 .checked {
   color: orange;
 }
+
+
+.google-img{
+  width: 25px;
+  border-radius:100%;
+}

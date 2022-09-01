@@ -46,7 +46,6 @@
       </div>
     </div>
   </main>
-
   <footer class="text-muted">
     <div class="container">
       <p class="float-end">
@@ -83,6 +82,8 @@
     .then((result) => {  
       console.log(result)
       if (result.user.emailVerified == true){
+        localStorage.setItem("user", result.user.displayName)
+        localStorage.setItem("img", result.user.reloadUserInfo.photoUrl)
         window.location.href = "home.html";
       }
     }).catch((error) => {
