@@ -21,6 +21,9 @@ fetch(FETCH_URL.concat(localStorage.getItem('catID')+ ".json"))
     let productsList = data.products
     console.log(productsList)
     show(productsList)
+
+
+    // AddEventListener para cada uno de los botones
     document.getElementById("sortAsc").addEventListener("click", function(){
         let orderedList = sortCategories(ORDER_BY_PROD_COUNT_ASC, productsList)
         show(orderedList);
@@ -68,6 +71,10 @@ fetch(FETCH_URL.concat(localStorage.getItem('catID')+ ".json"))
         
     });
 });
+
+
+
+//Funcion para mostrar los productos
 function show(array){
     container.innerHTML = " "
     for(let i = 0; i < array.length; i++){
@@ -86,6 +93,9 @@ function show(array){
         }
     }
 }
+
+
+//Funcion para ordenar el array que se le pase dependiendo del criterio que se ingrese
 function sortCategories(criteria, array, value){
     let result = [];
     if (criteria === ORDER_BY_PROD_COUNT_DESC){
@@ -109,15 +119,16 @@ function sortCategories(criteria, array, value){
     }else if (criteria === SEARCH){
         result = array.filter(check)  
         function check(name){
-            let lowerCaseName =  name.name.toLowerCase();
-            let upperCaseName =  name.name.toUpperCase();
-            let lowerCaseDescription =  name.description.toLowerCase();
-            let upperCaseDescription =  name.description.toUpperCase();
-            return lowerCaseName.includes(value) || upperCaseName.includes(value) || lowerCaseDescription.includes(value) ||  upperCaseDescription.includes(value)
+            return name.name.toLowerCase().includes(value.toLowerCase()) || name.description.toLowerCase().includes(value.toLowerCase())
         }
     }
     return result;
 }
+
+
+
+
+//Mostrar la imagen del usuario dependiendo del tipo de logueo
 if (localStorage.getItem("img") != null){
 document.getElementsByClassName("nav-item")[3].innerHTML += `
         <a class="nav-link" href="my-profile.html"><img src="${localStorage.getItem("img")}" class="google-img"> ${localStorage.getItem("user")}</a>
