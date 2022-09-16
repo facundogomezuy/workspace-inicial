@@ -1,0 +1,54 @@
+.imgAll{
+    display: flex;
+    flex-direction: column;
+}
+.productImg{
+    display: none;
+}
+
+.productImgList{
+    opacity: 0.3;
+    cursor: pointer;
+    
+}
+
+.active{
+    opacity: 1;
+    display: block;
+}
+
+.contBox{
+    display: flex;
+    position: relative;
+    background-color: white;
+    margin: 0px 10%;
+    padding: 50px 50px;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+.imgSpec{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.allData{
+    padding: 20px;
+}
+
+.rating{
+    align-items: center; 
+    justify-content: center; 
+    text-align: center; 
+    display: flex;
+    flex-direction: column; 
+    margin-right: 0%;
+    width: 50%;
+    flex-wrap: wrap;
+}
+.sendComment{
+    text-align: center; 
+    align-items: center; 
+    margin-top: 0%; 
+    display: flex; 
+    flex-direction: column;
+}

@@ -194,3 +194,13 @@ a.custom-card:hover {
   width: 25px;
   border-radius:100%;
 }
+
+
+.productCase{
+  text-decoration: none;
+  color: black;
+}
+
+.productCase:hover{
+  color: black;
+}
