@@ -39,3 +39,67 @@ let getJSONData = function(url){
         return result;
     });
 }
+
+if (localStorage.getItem("img") != null){
+  document.getElementsByClassName("nav-item")[3].innerHTML += `
+    <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
+      <ul class="navbar-nav">
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          <img src="${localStorage.getItem("img")}" class="google-img">${localStorage.getItem("user")}
+          </a>
+          <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
+            <li><a class="dropdown-item" href="./cart.html">Mi carrito</a></li>
+            <li><a class="dropdown-item" href="./my-profile.html">Mi perfil</a></li>
+            <li><a class="dropdown-item" href="./index.html">Cerrar sesión</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+          
+  `
+  // <div class="dropdown">
+  //         <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+  //         <img src="${localStorage.getItem("img")}" class="google-img">${localStorage.getItem("user")}
+  //         </a>
+      
+  //         <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+  //         <li><a class="dropdown-item" href="./cart.html">Mi carrito</a></li>
+  //         <li><a class="dropdown-item" href="./my-profile.html">Mi perfil</a></li>
+  //         <li><a class="dropdown-item" href="./index.html">Cerrar sesión</a></li>
+  //         </ul>
+  //     </div>
+} else{
+      document.getElementsByClassName("nav-item")[3].innerHTML += `
+        <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
+          <ul class="navbar-nav">
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <i class="fa fa-user"></i>${localStorage.getItem("user")}
+              </a>
+              <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
+                <li><a class="dropdown-item" href="./cart.html">Mi carrito</a></li>
+                <li><a class="dropdown-item" href="./my-profile.html">Mi perfil</a></li>
+                <li><a class="dropdown-item" href="./index.html">Cerrar sesión</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+         
+      `
+
+    //   <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
+    //   <ul class="navbar-nav">
+    //     <li class="nav-item dropdown">
+    //       <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    //         Dropdown
+    //       </a>
+    //       <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
+    //         <li><a class="dropdown-item" href="#">Action</a></li>
+    //         <li><a class="dropdown-item" href="#">Another action</a></li>
+    //         <li><a class="dropdown-item" href="#">Something else here</a></li>
+    //       </ul>
+    //     </li>
+    //   </ul>
+    // </div>
+}

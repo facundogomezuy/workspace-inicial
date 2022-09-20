@@ -7,6 +7,7 @@ let imgSpec = document.getElementsByClassName("imgSpec")[0]
 let allData = document.getElementsByClassName("allData")[0]
 let comments = document.getElementsByClassName("comments")[0]
 let rating = document.getElementsByClassName("rating")[0]
+let relatedBox = document.getElementsByClassName('relatedProduct')[0]
 let productData = []
 let commentData = []
 
@@ -16,6 +17,8 @@ fetch(FETCH_URL.concat(localStorage.getItem("prodID"))+ ".json")
     productData = data
     showProd()
     click()
+    related()
+    console.log(data)
 });
 
 
@@ -166,18 +169,41 @@ document.getElementById("btnComment").addEventListener('click', ()=>{
             user
         }
     //Vaciamos y agregamos al array original de comentarios
+    commentData = []
     commentData.push(object)
     commentShow()
     document.getElementById("description").value = " "
 })
 
-//Mostrar la imagen del usuario dependiendo del tipo de logueo
-if (localStorage.getItem("img") != null){
-    document.getElementsByClassName("nav-item")[3].innerHTML += `
-            <a class="nav-link" href="my-profile.html"><img src="${localStorage.getItem("img")}" class="google-img"> ${localStorage.getItem("user")}</a>
-        `
-    } else{
-        document.getElementsByClassName("nav-item")[3].innerHTML += `
-            <a class="nav-link" href="my-profile.html"><i class="fa fa-user"></i> ${localStorage.getItem("user")}</a>
+function related(){
+    for(let i=0; i<productData.relatedProducts.length; i++){
+        console.log(productData.relatedProducts[i].image)
+        relatedBox.innerHTML += `
+            <div style="border:1px solid black; width:200px; margin:30px;">
+                <img src="${productData.relatedProducts[i].image}" style="width:100%;">
+                <h4>${productData.relatedProducts[i].name}</h4>
+            </div>
         `
     }
+    
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

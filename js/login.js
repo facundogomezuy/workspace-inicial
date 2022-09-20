@@ -1,4 +1,5 @@
 document.addEventListener("DOMContentLoaded", function() {
+    localStorage.clear();
     document.getElementById("submit-button").addEventListener('click', (event) => {
         event.preventDefault(); 
         
