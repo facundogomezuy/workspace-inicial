@@ -8,6 +8,7 @@ let allData = document.getElementsByClassName("allData")[0]
 let comments = document.getElementsByClassName("comments")[0]
 let rating = document.getElementsByClassName("rating")[0]
 let relatedBox = document.getElementsByClassName('relatedProduct')[0]
+let carouselinner = document.getElementsByClassName('carousel-inner')[0]
 let productData = []
 let commentData = []
 
@@ -15,9 +16,11 @@ fetch(FETCH_URL.concat(localStorage.getItem("prodID"))+ ".json")
 .then(response => response.json())
 .then (data =>{
     productData = data
-    showProd()
-    click()
-    related()
+    showProd();
+    click();
+    related();
+    refresh();
+    cartSend();
     console.log(data)
 });
 
@@ -40,28 +43,29 @@ function showProd(){
             <br>
             <br>
             <h6>Descripción </h6>
-            <p>${productData.description}
+            <p>${productData.description}</p>
+            <button type="button" class="btn btn-success">Comprar</button>
         `
 }
 
-function click(){
-    //cambiar de imagen al clickear
-    let list = document.getElementsByClassName("productImgList")
-    let spec = document.getElementsByClassName("productImg")
+ function click(){
+     //cambiar de imagen al clickear
+     let list = document.getElementsByClassName("productImgList")
+     let spec = document.getElementsByClassName("productImg")
 
-    list[0].className  = "productImgList active"
-    spec[0].className  = "productImg active"
-    document.querySelectorAll(".productImgList").forEach((event, index) => {
-        event.addEventListener('click', ()=>{
-            for(let i=0; i<productData.images.length; i++){
-                list[i].className  = "productImgList"
-                spec[i].className  = "productImg"
-            }
-            spec[index].className += " active"
-            list[index].className += " active"
-        })
-    });
-}
+     list[0].className  = "productImgList active"
+     spec[0].className  = "productImg active"
+     document.querySelectorAll(".productImgList").forEach((event, index) => {
+         event.addEventListener('click', ()=>{
+             for(let i=0; i<productData.images.length; i++){
+                 list[i].className  = "productImgList"
+                 spec[i].className  = "productImg"
+             }
+             spec[index].className += " active"
+             list[index].className += " active"
+         })
+     });
+ }
 
 
 fetch(FETCH_COMM_URL.concat(localStorage.getItem("prodID"))+ ".json")
@@ -72,28 +76,24 @@ fetch(FETCH_COMM_URL.concat(localStorage.getItem("prodID"))+ ".json")
 });
 
 function commentShow(criterio){
-    let five = 0;
-    let four = 0;
-    let three = 0;
-    let two = 0;
-    let one = 0;
+    let varArray = [0,0,0,0,0];
     //Valoracion
     for(let i=0; i<commentData.length; i++){
         switch (commentData[i].score) {
             case 5:
-                five += 1;
+                varArray[0] += 1;
                 break;
             case 4:
-                four += 1;
+                varArray[1] += 1;
                 break;
             case 3:
-                three += 1;
+                varArray[2] += 1;
                 break;
             case 2:
-                two += 1;
+                varArray[3] += 1;
                 break;
             case 1:
-                one += 1;
+                varArray[4] += 1;
                 break;
         }
         let appendHTML = ""
@@ -117,40 +117,18 @@ function commentShow(criterio){
             </div>
         `
     }
-
+    //Agregar la valoracion
     if(criterio == true && commentData.length >0){
-        rating.innerHTML +=`
-            <div style="display:flex;">
-                <div class="w3-light-grey w3-round" style="width: 200px; margin-bottom:20px;">
-                    <div class="w3-container w3-round bg-dark" style="width:${100/commentData.length*five}%; color:white; height:100%;">${100/commentData.length*five}%</div>
-                </div>  
-                <p style="margin-left:10px;">5 estrellas</p>
-            </div>
-            <div style="display:flex;">
-                <div class="w3-light-grey w3-round" style="width: 200px; margin-bottom:20px;">
-                    <div class="w3-container w3-round bg-dark" style="width:${100/commentData.length*four}%; color:white; height:100%;">${100/commentData.length*four}%</div>
-                </div> 
-                <p style="margin-left:10px;">4 estrellas</p>
-            </div>
-            <div style="display:flex;"> 
-                <div class="w3-light-grey w3-round" style="width: 200px; margin-bottom:20px;">
-                    <div class="w3-container w3-round bg-dark" style="width:${100/commentData.length*three}%; color:white; height:100%;">${100/commentData.length*three}%</div>
-                </div> 
-                <p style="margin-left:10px;">3 estrellas</p>
-            </div>
-            <div style="display:flex;">
-                <div class="w3-light-grey w3-round" style="width: 200px; margin-bottom:20px;">
-                    <div class="w3-container w3-round bg-dark" style="width:${100/commentData.length*two}%; color:white; height:100%;">${100/commentData.length*two}%</div>
-                </div> 
-                <p style="margin-left:10px;">2 estrellas</p>
-            </div>
-            <div style="display:flex;">
-                <div class="w3-light-grey w3-round" style="width: 200px; margin-bottom:20px;">
-                    <div class="w3-container w3-round bg-dark" style="width:${100/commentData.length*one}%; color:white; height:100%;">${100/commentData.length*one}%</div>
-                </div> 
-                <p style="margin-left:10px;">1 estrellas</p>
-            </div>
-        `
+        for(let i=0; i<5; i++){
+            rating.innerHTML +=`
+                <div style="display:flex;">
+                    <div class="w3-light-grey w3-round" style="width: 200px; margin-bottom:20px;">
+                        <div class="w3-container w3-round bg-dark" style="width:${100/commentData.length*varArray[i]}%; color:white; height:100%;">${Math.round(100/commentData.length*varArray[i])}%</div>
+                    </div>  
+                    <p style="margin-left:10px;">${5-i} estrellas</p>
+                </div>
+            `
+        }
     }
 }
 //Poner comentarios al pulsar el boton
@@ -175,11 +153,11 @@ document.getElementById("btnComment").addEventListener('click', ()=>{
     document.getElementById("description").value = " "
 })
 
+//Productos relacionados
 function related(){
     for(let i=0; i<productData.relatedProducts.length; i++){
-        console.log(productData.relatedProducts[i].image)
         relatedBox.innerHTML += `
-            <div style="border:1px solid black; width:200px; margin:30px;">
+            <div class="relatedSpec" id="${productData.relatedProducts[i].id}">
                 <img src="${productData.relatedProducts[i].image}" style="width:100%;">
                 <h4>${productData.relatedProducts[i].name}</h4>
             </div>
@@ -187,23 +165,44 @@ function related(){
     }
     
 }
+//Recargamos la pagina con el producto relacionado seleccionado
+function refresh(){
+    document.querySelectorAll('.relatedSpec').forEach((clicked, i) =>{
+        clicked.addEventListener('click', ()=>{
+            localStorage.setItem("prodID", document.getElementsByClassName('relatedSpec')[i].id)
+            window.location.href ="./product-info.html"
+        })
+    })
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+//Agregamos el producto al localstorage y vamos al carrito
+function cartSend(){
+    document.getElementsByClassName('btn-success')[0].addEventListener('click', ()=>{
+        let prodArrayIni = []
+        let isInside = false
+        let productObject = {
+            name: productData.name,
+            count: 1,
+            currency:productData.currency,
+            unitCost: productData.cost,
+            image: productData.images[0]    
+        }
+        prodArrayIni = JSON.parse(localStorage.getItem('arrayProd'))
+        if(JSON.parse(localStorage.getItem('arrayProd')) !== null){
+            for(i=0;i<prodArrayIni.length; i++){
+                if(prodArrayIni[i].name ==productObject.name){
+                    prodArrayIni[i].count +=1
+                    isInside = true
+                }
+            }
+            if(isInside == false){
+                prodArrayIni.push(productObject)
+            }   
+        }else{
+            prodArrayIni = []
+            prodArrayIni[0] = productObject
+        }
+        localStorage.setItem('arrayProd', JSON.stringify(prodArrayIni))
+        window.location.href = '../cart.html'
+    })
+}
