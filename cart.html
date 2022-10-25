@@ -1,121 +1,297 @@
 <!DOCTYPE html>
 <html lang="es">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <title>eMercado - Todo lo que busques está aquí</title>
+    <link
+      href="https://fonts.googleapis.com/css?family=Raleway:300,300i,400,400i,700,700i,900,900i"
+      rel="stylesheet"
+    />
+    <link
+      href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+    <link href="css/font-awesome.min.css" rel="stylesheet" />
+    <link href="css/styles.css" rel="stylesheet" />
+    <link rel="stylesheet" href="css/cart.css" />
+  </head>
 
-<head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>eMercado - Todo lo que busques está aquí</title>
-  <link href="https://fonts.googleapis.com/css?family=Raleway:300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
-  <link href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.css" rel="stylesheet"  type='text/css'>
-  <link href="css/bootstrap.min.css" rel="stylesheet">
-  <link href="css/font-awesome.min.css" rel="stylesheet">
-  <link href="css/styles.css" rel="stylesheet">
-  <link rel="stylesheet" href="css/cart.css">
-</head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark p-1">
+      <div class="container">
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav w-100 justify-content-between">
+            <li class="nav-item">
+              <a class="nav-link" href="home.html">
+                <i class="fa fa-home"></i> Inicio</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="categories.html"
+                ><i class="fa fa-shopping-cart"></i> Categorías</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="sell.html">
+                <i class="fa fa-usd"></i> Vender</a
+              >
+            </li>
+            <li class="nav-item"></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <main>
+      <div class="container">
+        <div class="text-center p-4">
+          <h2>Carrito de compras</h2>
+        </div>
+        <h3>Articulos a comprar</h3>
+        <div>
+          <table class="default">
+            <thead>
+              <tr>
+                <th style="width: 33px"></th>
+                <th>Nombre</th>
+                <th>Costo</th>
+                <th>Cantidad</th>
+                <th>Subtotal</th>
+              </tr>
+            </thead>
+            <tbody class="addProduct"></tbody>
+          </table>
+        </div>
+        <div>
+          <hr />
+          <br />
+          <br />
+          <h3>Tipo de envio</h3>
+          <div style="display: flex; flex-direction: column">
+            <form action="">
+              <div>
+                <input type="radio" name="1" id="" class="radioSend" />
+                <label for="asd">Premium 2 a 5 dias (15%)</label>
+              </div>
+              <div>
+                <input type="radio" name="1" id="" class="radioSend" />
+                <label for="asd">Express 5 a 8 dias (7%)</label>
+              </div>
+              <div>
+                <input type="radio" name="1" id="" class="radioSend" checked />
+                <label for="asd">Standard 12 a 15 dias (5%)</label>
+              </div>
+              <br />
+              <h3>Direccion de envio</h3>
+              <div>
+                <div style="display: flex">
+                  <div class="mb-3">
+                    <label class="form-label">Calle</label>
+                    <input type="text" class="form-control" required />
+                  </div>
+                  <div class="mb-3 mx-5">
+                    <label class="form-label">Numero</label>
+                    <input type="text" class="form-control" required />
+                  </div>
+                </div>
+                <div style="display: flex">
+                  <div class="mb-3">
+                    <label class="form-label">Esquina</label>
+                    <input type="text" class="form-control" required />
+                  </div>
+                </div>
+              </div>
+              <br />
+              <hr />
+              <h3>Costos</h3>
+              <div>
+                <div class="borderContainer">
+                  <div>
+                    <h5>Subtotal</h5>
+                    <p>Costo unitario del producto por cantidad</p>
+                  </div>
+                  <div id="subTotalCost"></div>
+                </div>
+                <div class="borderContainer">
+                  <div>
+                    <h5>Costo de envio</h5>
+                    <p>Segun el tipo de envio</p>
+                  </div>
+                  <div id="shippingCost"></div>
+                </div>
+                <div class="borderContainer">
+                  <div>
+                    <h5>Total ($)</h5>
+                  </div>
+                  <div id="Total"></div>
+                </div>
+              </div>
+              <br />
+              <hr />
+              <h3>Forma de pago</h3>
+              <div style="display: flex">
+                <p
+                  id="selectedONo"
+                  style="padding: 0.375rem 0.75rem; margin-top: revert"
+                ></p>
+                <button
+                  type="button"
+                  class="w-10 btn btn-link"
+                  data-bs-toggle="modal"
+                  data-bs-target="#contidionsModal"
+                >
+                  Seleccionar
+                </button>
+              </div>
+              <div
+                class="modal fade"
+                tabindex="-1"
+                role="dialog"
+                id="contidionsModal"
+              >
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title">Forma de pago</h5>
+                    </div>
+                    <div class="modal-body">
+                      <div class="container">
+                        <div class="row">
+                          <div>
+                            <label for="">Tarjeta de credito</label>
+                            <input
+                              type="radio"
+                              id="radioCard"
+                              name="radioCards"
+                              onclick="payMethod()"
+                            />
+                          </div>
+                        </div>
+                        <hr />
+                        <div class="row">
+                          <div style="display: flex">
+                            <div>
+                              <label for="">Numero de tarjeta</label>
+                              <input
+                                type="text"
+                                class="form-control inputCredit"
+                              />
+                            </div>
+                            <div style="margin-left: 20px">
+                              <label for="">Codigo de seg.</label>
+                              <input
+                                type="text"
+                                class="form-control w-50 inputCredit"
+                              />
+                            </div>
+                          </div>
+                          <div
+                            style="
+                              display: flex;
+                              flex-direction: column;
+                              width: 230px;
+                            "
+                          >
+                            <label for="">Vencimiento(MM/AA)</label>
+                            <input
+                              type="text"
+                              class="form-control inputCredit"
+                            />
+                          </div>
+                          <div>
+                            <br />
+                            <label for="">Transferencia bancaria</label>
+                            <input
+                              type="radio"
+                              id="radioBank"
+                              name="radioCards"
+                              onclick="payMethod()"
+                            />
+                          </div>
+                        </div>
 
-<body>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark p-1">
-    <div class="container">
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav w-100 justify-content-between">
-          <li class="nav-item">
-            <a class="nav-link" href="home.html"> <i class="fa fa-home"></i> Inicio</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="categories.html"><i class="fa fa-shopping-cart"></i> Categorías</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="sell.html"> <i class="fa fa-usd"></i> Vender</a>
-          </li>
-          <li class="nav-item">
-          </li>
-        </ul>
-      </div>
-    </div>
-  </nav>
-  <main>
-    <div class="container">
-      <div class="text-center p-4">
-        <h2>Carrito de compras</h2>
-      </div>
-      <h3>Articulos a comprar</h3>
-      <div>
-        <table class="default">
-          <thead>
-            <tr>
-              <th style="width: 33px;"></th>
-              <th>Nombre</th>
-              <th>Costo</th>
-              <th>Cantidad</th>
-              <th>Subtotal</th>
-            </tr>
-         </thead>
-          <tbody class="addProduct">
-          </tbody>
-        </table>
-        
-      </div>
-      <div>
-        <hr>
-        <br>
-        <br>
-        <h3>Tipo de envio</h3>
-        <div style="display: flex; flex-direction:column;">
-          <form action="">
-            <div>
-              <input type="radio" name="1" id="" value="asd">
-              <label for="asd">Premium 2 a 5 dias (15%)</label>
-            </div>
-            <div>
-              <input type="radio" name="1" id="" value="asd">
-              <label for="asd">Express 5 a 8 dias (7%)</label>
-            </div>
-            <div>
-              <input type="radio" name="1" id="" value="asd">
-              <label for="asd">Standard 12 a 15 dias (5%)</label>
-            </div>
-          </form>
-          <br>
-          <h3>Direccion de envio</h3>
-          <div>
-              <form action="">
-                <label for="">Calle</label><br>
-                <input type="text" style="width:400px; height: 40px;"><br>
-                <label for="">Numero</label><br>
-                <input type="text" style="width:300px; height: 40px;"><br>
-                <label for="">Esquina</label><br>
-                <input type="text" style="width:400px; height: 40px;">
-              </form>
+                        <hr />
+                        <div class="row">
+                          <div style="display: flex; flex-direction: column">
+                            <label for="">Numero de cuenta</label>
+                            <input
+                              type="text"
+                              class="form-control w-50 inputBank"
+                            />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="modal-footer">
+                      <button
+                        type="button"
+                        class="btn btn-primary"
+                        data-bs-dismiss="modal"
+                      >
+                        Cerrar
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <button type="submit" class="btn btn-primary" data-bs-dismiss="modal" onclick="checkData(event)">Finalizar compra</button>
+            </form>
           </div>
         </div>
       </div>
+    </main>
+    <footer class="text-muted">
+      <div class="container">
+        <p class="float-end">
+          <a href="#">Volver arriba</a>
+        </p>
+        <p>
+          Este sitio forma parte de
+          <a href="https://jovenesaprogramar.edu.uy/" target="_blank"
+            >Jovenes a Programar</a
+          >
+          - 2022
+        </p>
+        <p>
+          Clickea <a target="_blank" href="Letra.pdf">aquí</a> para descargar la
+          letra del obligatorio.
+        </p>
+      </div>
+    </footer>
+    <div
+      class="alert alert-primary-dismissible fade alert-primary"
+      id="alertResult"
+      role="alert"
+    >
+      <span id="resultSpan">¡Has comprado con exito!</span>
     </div>
-  </main>
-  <footer class="text-muted">
-    <div class="container">
-      <p class="float-end">
-        <a href="#">Volver arriba</a>
-      </p>
-      <p>Este sitio forma parte de <a href="https://jovenesaprogramar.edu.uy/" target="_blank">Jovenes a Programar</a> -
-        2022</p>
-      <p>Clickea <a target="_blank" href="Letra.pdf">aquí</a> para descargar la letra del obligatorio.</p>
-    </div>
-  </footer>
-  <div id="spinner-wrapper">
-    <div class="lds-ring">
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
-    </div>
-  </div>
-  <script src="js/bootstrap.bundle.min.js"></script>
-  <script src="js/init.js"></script>
-  <script src="js/cart.js"></script>
-</body>
 
+    <div id="spinner-wrapper">
+      <div class="lds-ring">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+    </div>
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/init.js"></script>
+    <script src="js/cart.js"></script>
+  </body>
 </html>

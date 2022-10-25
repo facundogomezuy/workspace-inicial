@@ -3,10 +3,29 @@
     margin-left: auto;
     margin-right: auto;
 }
-input{
-    width: 70px;
-    border-radius: 5px;
-}
 td {
     text-align: left;
-  }
+}
+.countRange{
+    width: 50px;
+    border-radius: 5px;
+}
+.borderContainer{
+    padding: 5px;
+    border: 1px solid rgb(161, 158, 158);
+    display: flex;
+    justify-content: space-between;
+}
+.inputCredit, .inputBank {
+    width: auto;
+    border: 1px solid rgb(134, 131, 131);
+}
+
+.fa-trash{
+ cursor: pointer;
+ color: red;
+}
+
+.alertData{
+    color: red;
+}
