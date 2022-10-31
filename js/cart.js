@@ -131,8 +131,12 @@ document.querySelectorAll(".radioSend").forEach((element, index) => {
   });
 });
 
+
+//Metodo de pago modal
 function payMethod() {
-  console.log(document.getElementById("radioBank").checked);
+
+  //ver si selecciona tarjeta de credito, cuenta bancaria o si aun no selecciono ninguna
+
   if (document.getElementById("radioCard").checked) {
     document.getElementById("selectedONo").style.color = "black"
     document.getElementById("selectedONo").innerHTML =
@@ -154,6 +158,7 @@ function payMethod() {
   }
 }
 
+//Checkear todos los inputs
 function checkData(e) {
   let inputs = document.getElementsByClassName("form-control");
   let boolCheck = false;
@@ -202,14 +207,18 @@ function checkData(e) {
   }
   e.preventDefault();
 }
+
+//Borrar Item
 function deleteItem() {
+  //Checkear si alguno de los botones de borrar fue pulsado
   document.querySelectorAll(".fa-trash").forEach((element, index) => {
     element.addEventListener("click", () => {
+      //borrar el producto del array, subirlo al localstorage y mostrar el costo
       document.getElementsByClassName("productSp")[index].remove();
       productArray.splice(index, 1);
-      console.log(productArray);
       localStorage.setItem("arrayProd", JSON.stringify(productArray));
       cost(productArray);
+      //Esto es para evitar borrar el producto pre-cargado desde el fetch
       if (productArray.length == 0) {
         localStorage.removeItem("arrayProd");
       }

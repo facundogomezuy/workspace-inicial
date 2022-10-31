@@ -203,6 +203,6 @@ function cartSend(){
             prodArrayIni[0] = productObject
         }
         localStorage.setItem('arrayProd', JSON.stringify(prodArrayIni))
-        window.location.href = '../cart.html'
+        window.location.href = 'cart.html'
     })
 }
