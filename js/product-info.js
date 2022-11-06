@@ -122,7 +122,7 @@ function commentShow(criterio){
         for(let i=0; i<5; i++){
             rating.innerHTML +=`
                 <div style="display:flex;">
-                    <div class="w3-light-grey w3-round" style="width: 200px; margin-bottom:20px;">
+                    <div class="w3-light-grey w3-round" style="width: 30%; margin-bottom:20px;">
                         <div class="w3-container w3-round bg-dark" style="width:${100/commentData.length*varArray[i]}%; color:white; height:100%;">${Math.round(100/commentData.length*varArray[i])}%</div>
                     </div>  
                     <p style="margin-left:10px;">${5-i} estrellas</p>
