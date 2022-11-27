@@ -8,8 +8,8 @@ fetch(URL + "25801.json")
   .then((response) => response.json())
   .then((data) => {
     productArray = [];
+
     if (JSON.parse(localStorage.getItem("arrayProd")) !== null) {
-      console.log("no ta");
       if (
         JSON.parse(localStorage.getItem("arrayProd"))[0].name !== "Peugeot 208"
       ) {
@@ -25,6 +25,7 @@ fetch(URL + "25801.json")
     } else {
       productArray[0] = data.articles[0];
     }
+    
     show(productArray);
     changeCount();
     payMethod();
